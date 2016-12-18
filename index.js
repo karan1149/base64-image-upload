@@ -26,6 +26,10 @@ function Uploader(){
   // options override string for MIME
   // options has optional keys: headers, params, mime
   this.upload = function(b64, options, cb){
+    if (arguments.length < 2 || arguments.length > 3){
+      throw "Argument error. Make sure the arguments provided are valid.";
+    }
+    // handle two arguments provided
     if (arguments.length == 2){
       cb = options;
       options = {};
@@ -48,7 +52,7 @@ function Uploader(){
       paramsString = paramsString.concat(key + "=" + options.params.key);
     }
     if (paramsString == "?"){
-      paramString == "";
+      paramsString == "";
     }
     var requestHeaders = {};
     if (options.headers){
