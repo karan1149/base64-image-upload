@@ -40,8 +40,13 @@ function Uploader(){
     if (paramsString == "?"){
       paramString == "";
     }
-    console.log(this.getApiURL + paramsString);
-    request.post({url: this.getApiURL + paramsString, body: file, headers: options.headers, cb);
+    var requestHeaders = {};
+    if (options.headers){
+      requestHeaders = options.headers;
+    }
+    requestHeaders["Content-Type"] = mime;
+    console.log(this.getApiURL + paramsString, requestHeaders);
+    request.post({url: this.getApiURL + paramsString, body: file, headers: requestHeaders}, cb);
   }
 
   this.upload = function(String b64, Function cb){
