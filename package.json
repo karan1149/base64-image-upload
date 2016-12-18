@@ -20,7 +20,7 @@
     "form",
     "uploader"
   ],
-  "author": "Karan Singhal",
+  "author": {"name": "Karan Singhal", "url": "http://karansinghal.com"},
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/karan1149/base64-image-upload/issues"
