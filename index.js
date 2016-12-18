@@ -51,8 +51,8 @@ function Uploader(){
     for (key in options.params){
       paramsString = paramsString.concat(key + "=" + options.params.key);
     }
-    if (paramsString == "?"){
-      paramsString == "";
+    if (paramsString === "?"){
+      paramsString = "";
     }
     var requestHeaders = {};
     if (options.headers){
