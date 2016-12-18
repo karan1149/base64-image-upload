@@ -39,7 +39,6 @@ function Uploader(){
     if (options.mime){
       mime = options.mime;
     }
-    console.log(descriptor, mime);
     if (!mime){
       throw "No mime specified. You need to specify a mime string (e.g. 'image/png') either in the base64 input or the options argument.";
     }
@@ -59,7 +58,6 @@ function Uploader(){
       requestHeaders = options.headers;
     }
     requestHeaders["Content-Type"] = mime;
-    console.log(this.getApiUrl() + paramsString, requestHeaders);
     request.post({url: this.getApiUrl() + paramsString, body: file, headers: requestHeaders}, cb);
   }
 }
