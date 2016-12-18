@@ -1,6 +1,6 @@
 {
   "name": "base64-image-upload",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "POST base64-encoded images as binary data",
   "main": "index.js",
   "repository": {
@@ -20,7 +20,10 @@
     "form",
     "uploader"
   ],
-  "author": {"name": "Karan Singhal", "url": "http://karansinghal.com"},
+  "author": {
+    "name": "Karan Singhal",
+    "url": "http://karansinghal.com"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/karan1149/base64-image-upload/issues"
