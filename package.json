@@ -1,6 +1,6 @@
 {
   "name": "base64-image-upload",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "POST base64-encoded images as binary data",
   "main": "index.js",
   "repository": {
