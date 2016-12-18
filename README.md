@@ -1,5 +1,5 @@
 # Base64 Image Upload
-This is a simple NPM package for uploading image data to APIs with restrictive interfaces. 
+This is a simple NPM package for uploading (using a POST request) image data to APIs with restrictive interfaces. 
 
 Specifically, there is a scarcity of documentation online on how to upload base64-encoded images to (increasingly rare) APIs that only accept binary data, not `application/x-www-form-urlencoded` or `multipart/form-data`, and this package makes it easy to do so.
 
