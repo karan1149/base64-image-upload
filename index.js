@@ -47,12 +47,12 @@ function Uploader(){
       throw "No API URL specified. Use setApiUrl to set a URL";
     }
     file = new Buffer(descriptor.bare, 'base64');
-    var paramsString = "?";
+    var paramsString = "";
     for (key in options.params){
-      paramsString = paramsString.concat(key + "=" + options.params[key]);
+      paramsString = paramsString.concat("&" + key + "=" + options.params[key]);
     }
-    if (paramsString === "?"){
-      paramsString = "";
+    if (paramsString){
+      paramsString = "?".concat(paramsString.substring(1));
     }
     var requestHeaders = {};
     if (options.headers){
