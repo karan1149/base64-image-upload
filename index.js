@@ -26,6 +26,10 @@ function Uploader(){
   // options override string for MIME
   // options has optional keys: headers, params, mime
   this.upload = function(b64, options, cb){
+    if (arguments.length == 2){
+      cb = options;
+      options = {};
+    }
     var descriptor = this.getB64Descriptor(b64);
     var mime = descriptor.mime;
     if (options.mime){
@@ -53,10 +57,6 @@ function Uploader(){
     requestHeaders["Content-Type"] = mime;
     console.log(this.getApiURL() + paramsString, requestHeaders);
     request.post({url: this.getApiURL() + paramsString, body: file, headers: requestHeaders}, cb);
-  }
-
-  this.upload = function(b64, cb){
-    this.upload(b64, {}, cb);
   }
 }
 
