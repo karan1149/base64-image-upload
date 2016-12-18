@@ -24,6 +24,7 @@ function Uploader(){
   // overload upload method to make options object optional
   // b64 string can include MIME or not, options can include mime or not
   // options override string for MIME
+  // options has optional keys: headers, params, mime
   this.upload = function(String b64, Object options, Function cb){
     var descriptor = this.getB64Descriptor(b64);
     var mime = descriptor.mime;
@@ -39,7 +40,8 @@ function Uploader(){
     if (paramsString == "?"){
       paramString == "";
     }
-    request.post(this.getApiURL + paramsString)
+    console.log(this.getApiURL + paramsString);
+    request.post({url: this.getApiURL + paramsString, body: file, headers: options.headers, cb);
   }
 
   this.upload = function(String b64, Function cb){
