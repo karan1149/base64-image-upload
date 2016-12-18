@@ -10,7 +10,7 @@ function Uploader(){
     return this.apiUrl;
   }
 
-  this.getB64Descriptor = function(String b64){
+  this.getB64Descriptor = function(b64){
     var commaIndex = b64.indexOf(",");
     if (commaIndex == -1){
       return {bare: b64, mime: null};
@@ -25,13 +25,19 @@ function Uploader(){
   // b64 string can include MIME or not, options can include mime or not
   // options override string for MIME
   // options has optional keys: headers, params, mime
-  this.upload = function(String b64, Object options, Function cb){
+  this.upload = function(b64, options, cb){
     var descriptor = this.getB64Descriptor(b64);
     var mime = descriptor.mime;
     if (options.mime){
       mime = options.mime;
     }
     console.log(descriptor, mime);
+    if (!mime){
+      throw "No mime specified. You need to specify a mime string (e.g. 'image/png') either in the base64 input or the options argument.";
+    }
+    if (!this.getApiURL()){
+      throw "No API URL specified. Use setApiUrl to set a URL";
+    }
     file = new Buffer(descriptor.bare, 'base64');
     var paramsString = "?";
     for (key in options.params){
@@ -45,11 +51,11 @@ function Uploader(){
       requestHeaders = options.headers;
     }
     requestHeaders["Content-Type"] = mime;
-    console.log(this.getApiURL + paramsString, requestHeaders);
-    request.post({url: this.getApiURL + paramsString, body: file, headers: requestHeaders}, cb);
+    console.log(this.getApiURL() + paramsString, requestHeaders);
+    request.post({url: this.getApiURL() + paramsString, body: file, headers: requestHeaders}, cb);
   }
 
-  this.upload = function(String b64, Function cb){
+  this.upload = function(b64, cb){
     this.upload(b64, {}, cb);
   }
 }
