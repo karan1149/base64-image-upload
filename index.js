@@ -38,9 +38,6 @@ function Uploader(){
     if (!mime){
       throw "No mime specified. You need to specify a mime string (e.g. 'image/png') either in the base64 input or the options argument.";
     }
-    if (!this.getApiUrl()){
-      throw "No API URL specified. Use setApiUrl to set a URL";
-    }
     file = new Buffer(descriptor.bare, 'base64');
     var paramsString = "";
     for (key in options.params){
@@ -56,6 +53,9 @@ function Uploader(){
     requestHeaders["Content-Type"] = mime;
     var requestUrl = "";
     if (!options.url){
+      if (!this.getApiUrl()){
+        throw "No API URL specified. Use setApiUrl to set a URL";
+      }
       requestUrl = this.getApiUrl() + paramsString;
     } else {
       requestUrl = options.url + paramsString;
