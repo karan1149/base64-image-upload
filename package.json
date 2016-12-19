@@ -28,5 +28,8 @@
   "bugs": {
     "url": "https://github.com/karan1149/base64-image-upload/issues"
   },
+  "dependencies": {
+    "request": ">=2.79.0"
+  },
   "homepage": "https://github.com/karan1149/base64-image-upload#readme"
 }

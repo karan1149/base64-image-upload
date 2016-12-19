@@ -1,7 +1,7 @@
 # Base64 Image Upload
 This is a simple NPM package for uploading (using a POST request) image data to APIs with restrictive interfaces.
 
-Specifically, there is a scarcity of documentation online on how to upload base64-encoded images to (increasingly rare) APIs that only accept binary data, not `application/x-www-form-urlencoded` or `multipart/form-data`, and this package makes it easy to do so.
+Specifically, there is a scarcity of documentation online on how to upload base64-encoded images to APIs that only accept binary data, not `application/x-www-form-urlencoded` or `multipart/form-data`, and this package makes it easy to do so. This package will also work with base64-encoded strings that are not images.
 
 ## Install
 ```javascript
@@ -59,6 +59,31 @@ uploader.upload(image, function(err, response){
 });
 ```
 
+## Interface
+### uploader.setApiUrl(url)
+Set the API URL to upload images to.
+
+### uploader.getApiUrl()
+Get the current API URL. Returns null if it was never set.
+
+### uploader.upload(base64String, [options], callback)
+Base64 string can be bare (e.g. `iVBORw0K...`) or use the Data URI scheme (e.g. `data:image/png;base64,iVBORw0K...`). If the string is bare, options.mime needs to contain a valid MIME type string (e.g. "image/png" or "image/jpeg").
+
+Callback should take in two arguments, error and response. The response object will have the same structure as that returned by the [request](https://github.com/request/request) package. Specifically, response.statusCode and response.body are what you expect.
+
+#### options
+
+##### mime
+String that contains the mime type of the file to upload (e.g. "image/png" or "image/jpeg"). If mime is specified both in options and through the Data URI, options will override the Data URI.
+
+##### headers
+HTTP headers to add to the POST request. Content-Type will be automatically appended based on the MIME type specified in options.mime or the Data URI.
+
+##### params
+Parameters to add to the API URL as a query string. For example, if options.params = {"hello": "world"}, and uploader.getApiUrl() == "https://yourimageapi.com/upload", then the POST request will be made to "https://yourimageapi.com/upload?hello=world".
+
+## dependencies
+[request](https://github.com/request/request): Version >= 2.79.0
 
 ## License
 ISC
