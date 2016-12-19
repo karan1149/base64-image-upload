@@ -67,11 +67,13 @@ Set the API URL to upload images to.
 Get the current API URL. Returns null if it was never set.
 
 ### uploader.upload(base64String, [options], callback)
-Base64 string can be bare (e.g. `iVBORw0K...`) or use the Data URI scheme (e.g. `data:image/png;base64,iVBORw0K...`). If the string is bare, options.mime needs to contain a valid MIME type string (e.g. "image/png" or "image/jpeg").
+Base64String can be bare (e.g. `iVBORw0K...`) or use the Data URI scheme (e.g. `data:image/png;base64,iVBORw0K...`). If the string is bare, options.mime needs to contain a valid MIME type string (e.g. "image/png" or "image/jpeg").
 
 Callback should take in two arguments, error and response. The response object will have the same structure as that returned by the [request](https://github.com/request/request) package. Specifically, response.statusCode and response.body are what you expect.
 
 #### options
+
+Object that can be (optionally) used as the second argument in a call to `uploader.upload`.
 
 ##### mime
 String that contains the mime type of the file to upload (e.g. "image/png" or "image/jpeg"). If mime is specified both in options and through the Data URI, options will override the Data URI.
