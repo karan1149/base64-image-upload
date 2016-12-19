@@ -10,17 +10,6 @@ function Uploader(){
     return this.apiUrl;
   }
 
-  this.getB64Descriptor = function(b64){
-    var commaIndex = b64.indexOf(",");
-    if (commaIndex == -1){
-      return {bare: b64, mime: null};
-    } else {
-      semicolonIndex = b64.indexOf(";");
-      return {bare: b64.substring(commaIndex + 1), mime: b64.substring(5, semicolonIndex)};
-    }
-  }
-
-
   // overload upload method to make options object optional
   // b64 string can include MIME or not, options can include mime or not
   // options override string for MIME
@@ -34,7 +23,14 @@ function Uploader(){
       cb = options;
       options = {};
     }
-    var descriptor = this.getB64Descriptor(b64);
+    var descriptor = {};
+    var commaIndex = b64.indexOf(",");
+    if (commaIndex == -1){
+      descriptor = {bare: b64, mime: null};
+    } else {
+      semicolonIndex = b64.indexOf(";");
+      descriptor = {bare: b64.substring(commaIndex + 1), mime: b64.substring(5, semicolonIndex)};
+    }
     var mime = descriptor.mime;
     if (options.mime){
       mime = options.mime;
