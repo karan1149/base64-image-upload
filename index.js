@@ -54,7 +54,13 @@ function Uploader(){
       requestHeaders = options.headers;
     }
     requestHeaders["Content-Type"] = mime;
-    request.post({url: this.getApiUrl() + paramsString, body: file, headers: requestHeaders}, cb);
+    var requestUrl = "";
+    if (!options.url){
+      requestUrl = this.getApiUrl() + paramsString;
+    } else {
+      requestUrl = options.url + paramsString;
+    }
+    request.post({url: requestUrl, body: file, headers: requestHeaders}, cb);
   }
 }
 

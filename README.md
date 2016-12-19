@@ -84,6 +84,9 @@ HTTP headers to add to the POST request. Content-Type will be automatically appe
 ###### params
 Parameters to add to the API URL as a query string. For example, if options.params = {"hello": "world"}, and uploader.getApiUrl() == "https://yourimageapi.com/upload", then the POST request will be made to "https://yourimageapi.com/upload?hello=world".
 
+###### url
+If provided, used instead of `uploader.getApiUrl()` to get base API URL for the current upload.
+
 ## Dependencies
 [request](https://github.com/request/request): Version >= 2.79.0
 
