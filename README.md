@@ -75,21 +75,21 @@ Callback should take in two arguments, error and response. The response object w
 
 Object that can be (optionally) used as the second argument in a call to `uploader.upload`.
 
-##### mime
+###### mime
 String that contains the mime type of the file to upload (e.g. "image/png" or "image/jpeg"). If mime is specified both in options and through the Data URI, options will override the Data URI.
 
-##### headers
+###### headers
 HTTP headers to add to the POST request. Content-Type will be automatically appended based on the MIME type specified in options.mime or the Data URI.
 
-##### params
+###### params
 Parameters to add to the API URL as a query string. For example, if options.params = {"hello": "world"}, and uploader.getApiUrl() == "https://yourimageapi.com/upload", then the POST request will be made to "https://yourimageapi.com/upload?hello=world".
 
-## dependencies
+## Dependencies
 [request](https://github.com/request/request): Version >= 2.79.0
 
 ## License
 ISC
 
-### Note
+### Development Note
 
 I discovered a need for this package while trying to upload images to the sparsely documented Groupme Image Service. Most APIs allow images to be sent as part of form structures specified by `application/x-www-form-urlencoded` or `multipart/form-data`, but Groupme did not. After trying nearly every possible combination of encoding and packaging of POST requests, I found the one that worked and packaged it in this NPM package.
