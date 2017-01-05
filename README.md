@@ -60,13 +60,13 @@ uploader.upload(image, function(err, response){
 ```
 
 ## Interface
-### uploader.setApiUrl(url)
+### `uploader.setApiUrl(url)`
 Set the API URL to upload images to.
 
-### uploader.getApiUrl()
+### `uploader.getApiUrl()`
 Get the current API URL. Returns null if it was never set.
 
-### uploader.upload(base64String, [options], callback)
+### `uploader.upload(base64String, [options], callback)`
 Base64String can be bare (e.g. `iVBORw0K...`) or use the Data URI scheme (e.g. `data:image/png;base64,iVBORw0K...`). If the string is bare, options.mime needs to contain a valid MIME type string (e.g. "image/png" or "image/jpeg").
 
 Callback should take in two arguments, error and response. The response object will have the same structure as that returned by the [request](https://github.com/request/request) package. Specifically, response.statusCode and response.body are what you expect.
@@ -75,16 +75,16 @@ Callback should take in two arguments, error and response. The response object w
 
 Object that can be (optionally) used as the second argument in a call to `uploader.upload`.
 
-###### mime
+###### `mime`
 String that contains the mime type of the file to upload (e.g. "image/png" or "image/jpeg"). If mime is specified both in options and through the Data URI, options will override the Data URI.
 
-###### headers
+###### `headers`
 HTTP headers to add to the POST request. Content-Type will be automatically appended based on the MIME type specified in options.mime or the Data URI.
 
-###### params
+###### `params`
 Parameters to add to the API URL as a query string. For example, if options.params = {"hello": "world"}, and uploader.getApiUrl() == "https://yourimageapi.com/upload", then the POST request will be made to "https://yourimageapi.com/upload?hello=world".
 
-###### url
+###### `url`
 If provided, used instead of `uploader.getApiUrl()` to get base API URL for the current upload.
 
 ## Dependencies
